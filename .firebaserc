@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "mcp-memory-srv-prust"
+  },
+  "targets": {},
+  "etags": {}
+}

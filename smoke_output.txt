@@ -1,0 +1,143 @@
+﻿≡ƒÜÇ Starting MCP Memory Server smoke test (14 tools)...
+
+node : 2026-02-24T04:1
+1:27.139Z [MCP 
+Memory] [INFO] 
+Configuration loaded 
+for user: 
+smoke-test-user
+At line:1 char:1
++ node 
+tests/smoke.mjs 2>&1 
+| Out-File -Encoding 
+utf8 
+smoke_output.txt; ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (2026-02-24   
+ T04:1...smoke-tes    
+t-user:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+2026-02-24T04:11:27.16
+2Z [MCP Memory] 
+[INFO] Memory store 
+initialized for user: 
+smoke-test-user
+2026-02-24T04:11:27.16
+5Z [MCP Memory] 
+[INFO] Firebase 
+Shared Memory MCP 
+server running on 
+stdio
+≡ƒôí Connected to MCP server
+
+≡ƒôï Listing tools...
+  Γ£à 14 tools: add_memories, add_memory, cleanup_expired, delete_memories, delete_memory, export_memories, get_all_memories, get_memory, import_memories, link_memories, memory_stats, pin_memory, search_memories, update_memory
+
+≡ƒö¼ Testing tools against live Firestore...
+
+  Γ£à add_memory: Memory added successfully. ID: qH75gU90F5YxZsxMsQMQ | ≡ƒôî Pinned
+
+     ΓåÆ Memory ID: qH75gU90F5YxZsxMsQMQ
+
+  Γ£à get_memory: {
+  "id": "qH75gU90F5YxZsxMsQMQ",
+  "fact": "Smoke test: The meaning of life is 42 ΓÇö 2026-02-24T04:11:27.174Z",
+  "tags": [
+    "smoke-test",
+    "automated"
+  ],
+  "pinned": true,
+  "relatedTo": [],
+  "expiresAt": null,
+  "createdAt": "2026-02-24T04:11:27.382Z",
+  "updatedAt": "2026-02-24T04:11:27.382Z"
+}
+
+  Γ£à add_memory: Memory added successfully. ID: P45qJr9ibIryeAVSgAw5 | ΓÅ░ Expires in 1h
+
+≡ƒÆÑ Smoke test 
+failed: McpError: MCP 
+error 9: 9 
+FAILED_PRECONDITION: 
+The query requires an 
+index. You can create 
+it here: https://conso
+le.firebase.google.com
+/v1/r/project/mcp-memo
+ry-srv-prust/firestore
+/indexes?create_compos
+ite=ClVwcm9qZWN0cy9tY3
+AtbWVtb3J5LXNydi1wcnVz
+dC9kYXRhYmFzZXMvKGRlZm
+F1bHQpL2NvbGxlY3Rpb25H
+cm91cHMvbWVtb3JpZXMvaW
+5kZXhlcy9fEAEaCgoGcGlu
+bmVkEAEaDQoJY3JlYXRlZE
+F0EAIaDAoIX19uYW1lX18Q
+Ag
+    at 
+McpError.fromError (fi
+le:///C:/Users/prust/O
+neDrive/Desktop/mcp-me
+mory-server/node_modul
+es/@modelcontextprotoc
+ol/sdk/dist/esm/types.
+js:2035:16)
+    at 
+Client._onresponse (fi
+le:///C:/Users/prust/O
+neDrive/Desktop/mcp-me
+mory-server/node_modul
+es/@modelcontextprotoc
+ol/sdk/dist/esm/shared
+/protocol.js:482:36)
+    at 
+_transport.onmessage (
+file:///C:/Users/prust
+/OneDrive/Desktop/mcp-
+memory-server/node_mod
+ules/@modelcontextprot
+ocol/sdk/dist/esm/shar
+ed/protocol.js:234:22)
+    at StdioClientTran
+sport.processReadBuffe
+r (file:///C:/Users/pr
+ust/OneDrive/Desktop/m
+cp-memory-server/node_
+modules/@modelcontextp
+rotocol/sdk/dist/esm/c
+lient/stdio.js:130:33)
+    at 
+Socket.<anonymous> (fi
+le:///C:/Users/prust/O
+neDrive/Desktop/mcp-me
+mory-server/node_modul
+es/@modelcontextprotoc
+ol/sdk/dist/esm/client
+/stdio.js:92:22)
+    at Socket.emit 
+(node:events:508:28)
+    at addChunk (node:
+internal/streams/reada
+ble:559:12)
+    at readableAddChun
+kPushByteMode (node:in
+ternal/streams/readabl
+e:510:3)
+    at Readable.push (
+node:internal/streams/
+readable:390:5)
+    at 
+Pipe.onStreamRead (nod
+e:internal/stream_base
+_commons:189:23) {
+  code: 9,
+  data: undefined
+}

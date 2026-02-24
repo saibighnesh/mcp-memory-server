@@ -1,0 +1,461 @@
+﻿
+> mcp-memory-server@2.2.0 test
+> node --experimental-vm-modules node_modules/jest/bin/jest.js
+
+  console.error
+    2026-02-24T04:09:34.023Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.041Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.043Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.045Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.047Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.048Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.049Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.051Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.052Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.054Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.061Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.062Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.063Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.064Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.068Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.069Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.071Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.072Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+  console.error
+    2026-02-24T04:09:34.073Z [MCP Memory] [INFO] Memory store initialized for user: test-user
+
+    [0m [90m 30 |[39m     }[33m,[39m
+     [90m 31 |[39m     info(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+    [31m[1m>[22m[39m[90m 32 |[39m         [36mif[39m (shouldLog([32m"info"[39m)) console[33m.[39merror(formatMessage([32m"info"[39m[33m,[39m message[33m,[39m meta))[33m;[39m
+     [90m    |[39m                                        [31m[1m^[22m[39m
+     [90m 33 |[39m     }[33m,[39m
+     [90m 34 |[39m     warn(message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m unknown)[33m:[39m [36mvoid[39m {
+     [90m 35 |[39m         [36mif[39m (shouldLog([32m"warn"[39m)) console[33m.[39merror(formatMessage([32m"warn"[39m[33m,[39m message[33m,[39m meta))[33m;[39m[0m
+
+      at Object.info (src/logger.ts:32:40)
+      at new FirestoreMemoryStore (src/store.ts:135:16)
+      at Object.<anonymous> (tests/store.test.ts:103:17)
+
+node.exe : 
+(node:21496) 
+ExperimentalWarning: 
+VM Modules is an 
+experimental feature 
+and might change at 
+any time
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\prust\AppData\Roa
+ming\ ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ((node:2149   
+ 6) Ex...nge at an    
+y time:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+(Use `node 
+--trace-warnings ...` 
+to show where the 
+warning was created)
+FAIL 
+tests/store.test.ts
+  FirestoreMemoryStore
+    add()
+      ΓêÜ should add 
+a memory with fact, 
+tags, and pinned flag 
+(19 ms)
+      ΓêÜ should 
+default tags, pinned, 
+and expiresAt when 
+not provided (2 ms)
+      ΓêÜ should 
+compute expiresAt 
+when ttl_hours is 
+provided (2 ms)
+    getById()
+      ΓêÜ should 
+return a memory when 
+found (2 ms)
+      ΓêÜ should 
+return null when not 
+found (1 ms)
+      ΓêÜ should 
+return null for 
+expired memories (1 
+ms)
+    search()
+      ΓêÜ should 
+filter memories 
+case-insensitively 
+and exclude expired 
+(1 ms)
+      ΓêÜ should 
+return empty array 
+when nothing matches 
+(2 ms)
+    smartSearch()
+      ΓêÜ should 
+score exact matches 
+highest (1 ms)
+      ├ù should 
+return partial word 
+matches with lower 
+scores (2 ms)
+    searchByTags()
+      ΓêÜ should 
+query Firestore with 
+array-contains-any (2 
+ms)
+      ΓêÜ should 
+return empty array 
+for empty tags (1 ms)
+    update()
+      ΓêÜ should 
+update fact, tags, 
+and pinned on an 
+existing document (1 
+ms)
+      ΓêÜ should 
+throw when updating a 
+non-existent document 
+(4 ms)
+    delete()
+      ΓêÜ should 
+delete an existing 
+document and return 
+true (1 ms)
+      ΓêÜ should 
+return false for a 
+non-existent document 
+(1 ms)
+    togglePin()
+      ΓêÜ should 
+toggle pinned from 
+false to true (1 ms)
+    getStats()
+      ΓêÜ should 
+return zeros for an 
+empty collection (1 
+ms)
+      ΓêÜ should 
+return count and 
+boundary timestamps 
+(1 ms)
+
+  ΓùÅ 
+FirestoreMemoryStore 
+ΓÇ║ smartSearch() ΓÇ║ 
+should return partial 
+word matches with 
+lower scores
+
+    expect(received).t
+oBeLessThan(expected)
+
+    Expected: < 1
+    Received:   1
+
+    [0m [90m 265 
+|[39m
+     [90m 266 |[39m 
+            expect(res
+ults[33m.[39mlength)
+[33m.[39mtoBe([35m1
+[39m)[33m;[39m
+    [31m[1m>[22m[3
+9m[90m 267 |[39m    
+         expect(result
+s[[35m0[39m][33m.[
+39mrelevance)[33m.[3
+9mtoBeLessThan([35m1.
+0[39m)[33m;[39m
+     [90m     |[39m 
+                      
+                   
+[31m[1m^[22m[39m
+     [90m 268 |[39m 
+            expect(res
+ults[[35m0[39m][33m
+.[39mrelevance)[33m.
+[39mtoBeGreaterThan(
+[35m0[39m)[33m;[39m
+     [90m 269 |[39m 
+        })[33m;[39m
+     [90m 270 |[39m 
+    })[33m;[39m[0m
+
+      at 
+Object.<anonymous> (te
+sts/store.test.ts:267:
+42)
+
+Test Suites: 1 
+failed, 1 total
+Tests:       1 
+failed, 18 passed, 19 
+total
+Snapshots:   0 total
+Time:        1.422 s, 
+estimated 3 s
+Ran all test suites.
