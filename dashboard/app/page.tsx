@@ -133,11 +133,14 @@ function MemoryTimeline({ memories }: { memories: Memory[] }) {
   );
 }
 
+import { useAuth } from "@/components/AuthProvider";
+
 export default function DashboardPage() {
-  const { memories, loading } = useMemories();
+  const { user, loading: authLoading, signInWithGoogle } = useAuth();
+  const { memories, loading: memoriesLoading } = useMemories(user?.uid);
   const stats = useStats(memories);
 
-  if (loading) {
+  if (authLoading || memoriesLoading) {
     return (
       <div className="flex">
         <Sidebar />
@@ -146,6 +149,32 @@ export default function DashboardPage() {
             <div className="w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
           </div>
         </main>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass p-8 max-w-sm w-full text-center space-y-6">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+              <Brain className="w-8 h-8 text-[var(--color-primary)]" />
+            </div>
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold">MCP Memory Server</h1>
+            <p className="text-sm text-[var(--color-text-muted)] mt-2">
+              Sign in to view your personal AI memory dashboard
+            </p>
+          </div>
+          <button
+            onClick={signInWithGoogle}
+            className="w-full btn-primary flex items-center justify-center gap-2"
+          >
+            Sign in with Google
+          </button>
+        </div>
       </div>
     );
   }

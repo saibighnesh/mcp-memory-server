@@ -11,10 +11,10 @@ import {
     updateDoc,
     Timestamp,
 } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, auth } from "./firebase";
 import type { Memory, MemoryStats } from "./types";
 
-const USER_ID = "smoke-test-user"; // TODO: replace with auth userId
+// The hardcoded USER_ID is removed in favor of dynamic IDs from Firebase Auth
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function docToMemory(d: any): Memory {
@@ -42,13 +42,19 @@ function docToMemory(d: any): Memory {
 }
 
 /** Real-time listener for all memories, sorted pinned-first then newest. */
-export function useMemories() {
+export function useMemories(userId?: string) {
     const [memories, setMemories] = useState<Memory[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        if (!userId) {
+            setMemories([]);
+            setLoading(false);
+            return;
+        }
+
         const q = query(
-            collection(db, "users", USER_ID, "memories"),
+            collection(db, "users", userId, "memories"),
             orderBy("createdAt", "desc")
         );
 
@@ -110,12 +116,16 @@ export function useStats(memories: Memory[]): MemoryStats {
 
 /** Delete a memory from Firestore. */
 export async function deleteMemory(id: string) {
-    await deleteDoc(doc(db, "users", USER_ID, "memories", id));
+    const userId = auth.currentUser?.uid;
+    if (!userId) throw new Error("Not authenticated");
+    await deleteDoc(doc(db, "users", userId, "memories", id));
 }
 
 /** Toggle pin status. */
 export async function togglePin(id: string, currentPinned: boolean) {
-    await updateDoc(doc(db, "users", USER_ID, "memories", id), {
+    const userId = auth.currentUser?.uid;
+    if (!userId) throw new Error("Not authenticated");
+    await updateDoc(doc(db, "users", userId, "memories", id), {
         pinned: !currentPinned,
     });
 }
@@ -125,7 +135,9 @@ export async function updateMemory(
     id: string,
     updates: { fact?: string; tags?: string[] }
 ) {
-    await updateDoc(doc(db, "users", USER_ID, "memories", id), {
+    const userId = auth.currentUser?.uid;
+    if (!userId) throw new Error("Not authenticated");
+    await updateDoc(doc(db, "users", userId, "memories", id), {
         ...updates,
         updatedAt: Timestamp.now(),
     });
