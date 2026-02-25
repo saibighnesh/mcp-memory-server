@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * MCP Memory Server — Interactive Setup Wizard
+ * OmniBrain (MCP Memory Server) — Interactive Setup Wizard
  * 
  * A foolproof, step-by-step guide to setting up the server, Firebase credentials,
  * the web dashboard, and the AI MCP configs.
@@ -61,7 +61,7 @@ function sleep(ms) {
 
 console.log(`
 ${BOLD}${BLUE}╔══════════════════════════════════════════════════════╗
-║     ✨ MCP Memory Server — Interactive Setup ✨      ║
+║        ✨ OmniBrain MCP — Interactive Setup ✨       ║
 ╚══════════════════════════════════════════════════════╝${RESET}
 
 Welcome! This setup will walk you through getting your AI Memory Server 
@@ -72,14 +72,12 @@ async function main() {
     // Step 1: Firebase Project Setup
     console.log(`\n${BOLD}${CYAN}Step 1: Create a Free Database${RESET}`);
     console.log(`We use Google Firebase to securely store your memories for free.`);
-    console.log(`The fastest way is using the CLI. Run these two commands in a new terminal:`);
-    console.log(`  1. ${BOLD}npx firebase login${RESET}`);
-    console.log(`  2. ${BOLD}npx firebase init${RESET} (Select Firestore, create a new project, use default rules)`);
-    console.log(`\n${DIM}Or do it manually:${RESET}`);
-    console.log(`${DIM}- Go to https://console.firebase.google.com/${RESET}`);
-    console.log(`${DIM}- Add a project -> Build -> Firestore Database -> Create database (Test Mode)${RESET}`);
-    
-    await prompt("Press Enter when you have a Firebase project ready.");
+    console.log(`1. Go to ${BOLD}https://console.firebase.google.com/${RESET}`);
+    console.log(`2. Click ${BOLD}"Add project"${RESET} and follow the prompts.`);
+    console.log(`3. Once created, go to ${BOLD}Build -> Firestore Database${RESET} in the left sidebar.`);
+    console.log(`4. Click ${BOLD}"Create database"${RESET} (you can choose "Test Mode" or "Production Mode", it doesn't matter for this server).`);
+
+    await prompt("Press Enter when you have a Firebase project and Firestore database ready.");
 
     // Step 2: Service Account Key (Backend)
     console.log(`\n${BOLD}${CYAN}Step 2: Get Your Secret Backend Key${RESET}`);
@@ -134,10 +132,11 @@ async function main() {
         }
     }
 
+    const nodePath = process.execPath.replace(/\\/g, "/");
     const mcpConfig = {
         mcpServers: {
             "memory": {
-                command: "node",
+                command: nodePath,
                 args: [serverPath, `--user-id=${userId || 'YOUR_UID_HERE'}`]
             }
         }
@@ -151,9 +150,9 @@ async function main() {
     }
 
     console.log(`\n${BOLD}Paste that into your MCP settings file!${RESET}`);
-    console.log(`  - For Antigravity IDE: Just tell the AI: ${CYAN}"Add this memory server: node ${serverPath} --user-id=${userId || 'YOUR_UID'}"${RESET}`);
+    console.log(`  - For Antigravity IDE: Just tell the AI: ${CYAN}"Add this memory server: ${nodePath} ${serverPath} --user-id=${userId || 'YOUR_UID'}"${RESET}`);
     console.log(`  - For Claude Desktop: ${CYAN}claude_desktop_config.json${RESET}`);
-    console.log(`  - For Cursor IDE: Settings -> MCP -> Add new -> Command: ${CYAN}node ${serverPath} --user-id=${userId || 'YOUR_UID'}${RESET}`);
+    console.log(`  - For Cursor IDE: Settings -> MCP -> Add new -> Command: ${CYAN}${nodePath} ${serverPath} --user-id=${userId || 'YOUR_UID'}${RESET}`);
 
     console.log(`\n${BOLD}${GREEN}Setup Complete! Restart your AI client (or tell Antigravity it's ready) and say "Hello"!${RESET}`);
 

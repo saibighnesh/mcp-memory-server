@@ -342,21 +342,14 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
 
     describe("getRelated()", () => {
         it("should throw when source memory doesn't exist", async () => {
-            const mockDocRef = {
-                get: jest.fn().mockResolvedValue(createMockDoc("missing", {}, false)),
-            };
-            mockCollection.doc.mockReturnValue(mockDocRef);
+            mockCollection.get.mockResolvedValue(createMockSnapshot([]));
 
             await expect(store.getRelated("missing")).rejects.toThrow("not found");
         });
 
         it("should return empty array when memory has no relations", async () => {
-            const mockDocRef = {
-                get: jest.fn().mockResolvedValue(
-                    createMockDoc("solo", { relatedTo: [] })
-                ),
-            };
-            mockCollection.doc.mockReturnValue(mockDocRef);
+            const soloDoc = createMockDoc("solo", { relatedTo: [] });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([soloDoc]));
 
             const result = await store.getRelated("solo");
             expect(result).toEqual([]);
@@ -375,9 +368,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 updatedAt: null,
             });
 
-            mockCollection.doc
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(sourceDoc) })
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(expiredDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([sourceDoc, expiredDoc]));
 
             const result = await store.getRelated("src");
             expect(result).toEqual([]);
@@ -385,11 +376,8 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
 
         it("should skip related memories that no longer exist", async () => {
             const sourceDoc = createMockDoc("src", { relatedTo: ["deleted-one"] });
-            const deletedDoc = createMockDoc("deleted-one", {}, false);
 
-            mockCollection.doc
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(sourceDoc) })
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(deletedDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([sourceDoc]));
 
             const result = await store.getRelated("src");
             expect(result).toEqual([]);
@@ -407,9 +395,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 updatedAt: null,
             });
 
-            mockCollection.doc
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(sourceDoc) })
-                .mockReturnValueOnce({ get: jest.fn().mockResolvedValue(relDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([sourceDoc, relDoc]));
 
             const result = await store.getRelated("src");
             expect(result).toHaveLength(1);
@@ -744,7 +730,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 createdAt: null,
                 updatedAt: null,
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("no-fact");
             expect(result!.fact).toBe("");
@@ -760,7 +746,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 createdAt: null,
                 updatedAt: null,
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("bad-tags");
             expect(Array.isArray(result!.tags)).toBe(true);
@@ -777,7 +763,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 createdAt: null,
                 updatedAt: null,
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("bad-related");
             expect(Array.isArray(result!.relatedTo)).toBe(true);
@@ -794,7 +780,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 createdAt: null,
                 updatedAt: null,
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("bad-pin");
             expect(result!.pinned).toBe(false);
@@ -809,7 +795,7 @@ describe("FirestoreMemoryStore — Edge Cases", () => {
                 expiresAt: null,
                 // createdAt and updatedAt missing entirely
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("no-times");
             expect(result!.createdAt).toBeNull();

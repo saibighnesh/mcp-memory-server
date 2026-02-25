@@ -1,5 +1,5 @@
 /**
- * Shared TypeScript types for the MCP Memory Server.
+ * Shared TypeScript types for OmniBrain MCP.
  */
 
 /** A memory document as stored in Firestore. */

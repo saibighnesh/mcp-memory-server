@@ -212,10 +212,9 @@ export class FirestoreMemoryStore {
     /** Fetch a single memory by document ID. Returns null if not found or expired. */
     async getById(id: string): Promise<Memory | null> {
         return withRetry("getById", async () => {
-            const doc = await this.collection.doc(id).get();
-            if (!doc.exists) return null;
-            const memory = docToMemory(doc);
-            if (isExpired(memory)) return null;
+            const allDocs = await this.getCachedMemories();
+            const memory = allDocs.find((m) => m.id === id);
+            if (!memory || isExpired(memory)) return null;
             return memory;
         });
     }
@@ -287,19 +286,17 @@ export class FirestoreMemoryStore {
         });
     }
 
-    /** Search memories by tags using Firestore array-contains-any. */
+    /** Search memories by tags. */
     async searchByTags(tags: string[]): Promise<Memory[]> {
         if (tags.length === 0) return [];
 
-        // Firestore limits array-contains-any to 30 values
-        const queryTags = tags.slice(0, 30).map((t) => t.toLowerCase());
+        const queryTags = tags.map((t) => t.toLowerCase());
 
         return withRetry("searchByTags", async () => {
-            const snapshot = await this.collection
-                .where("tags", "array-contains-any", queryTags)
-                .get();
-
-            return snapshot.docs.map(docToMemory).filter((m) => !isExpired(m));
+            const allDocs = await this.getCachedMemories();
+            return allDocs
+                .filter((m) => !isExpired(m))
+                .filter((m) => m.tags.some((t) => queryTags.includes(t)));
         });
     }
 
@@ -526,11 +523,17 @@ export class FirestoreMemoryStore {
         if (mode === "replace") {
             // Delete all existing memories first
             const existing = await this.collection.get();
-            const deleteBatch = this.db.batch();
-            for (const doc of existing.docs) {
-                deleteBatch.delete(doc.ref);
+            const chunks = [];
+            for (let i = 0; i < existing.docs.length; i += 400) {
+                chunks.push(existing.docs.slice(i, i + 400));
             }
-            if (existing.docs.length > 0) await deleteBatch.commit();
+            for (const chunk of chunks) {
+                const deleteBatch = this.db.batch();
+                for (const doc of chunk) {
+                    deleteBatch.delete(doc.ref);
+                }
+                await deleteBatch.commit();
+            }
             logger.info(`Cleared ${existing.docs.length} existing memories for replace import`);
         }
 
@@ -651,21 +654,14 @@ export class FirestoreMemoryStore {
     /** Get all memories related to a given memory. */
     async getRelated(id: string): Promise<Memory[]> {
         return withRetry("getRelated", async () => {
-            const doc = await this.collection.doc(id).get();
-            if (!doc.exists) throw new Error(`Memory ${id} not found.`);
+            const allDocs = await this.getCachedMemories();
+            const memory = allDocs.find((m) => m.id === id);
+            if (!memory) throw new Error(`Memory ${id} not found.`);
 
-            const relatedIds: string[] = doc.data()?.relatedTo ?? [];
+            const relatedIds: string[] = memory.relatedTo ?? [];
             if (relatedIds.length === 0) return [];
 
-            const results: Memory[] = [];
-            for (const rid of relatedIds) {
-                const rdoc = await this.collection.doc(rid).get();
-                if (rdoc.exists) {
-                    const m = docToMemory(rdoc);
-                    if (!isExpired(m)) results.push(m);
-                }
-            }
-            return results;
+            return allDocs.filter(m => relatedIds.includes(m.id) && !isExpired(m));
         });
     }
 
@@ -674,25 +670,26 @@ export class FirestoreMemoryStore {
     /** Aggregate stats: total count, oldest and newest timestamps. */
     async getStats(): Promise<MemoryStats> {
         return withRetry("getStats", async () => {
-            // Get count
-            const countSnap = await this.collection.count().get();
-            const totalCount = countSnap.data().count;
-
-            if (totalCount === 0) {
+            const allDocs = await this.getCachedMemories();
+            const validDocs = allDocs.filter((m) => !isExpired(m));
+            
+            if (validDocs.length === 0) {
                 return { totalCount: 0, oldestTimestamp: null, newestTimestamp: null };
             }
 
-            // Get oldest
-            const oldestSnap = await this.collection.orderBy("createdAt", "asc").limit(1).get();
-            const oldestDoc = oldestSnap.docs[0];
-            const oldestTimestamp = oldestDoc?.data()?.createdAt?.toDate?.()?.toISOString() ?? null;
+            const timestamps = validDocs
+                .map((m) => m.createdAt ? new Date(m.createdAt).getTime() : 0)
+                .filter((t) => t > 0);
 
-            // Get newest
-            const newestSnap = await this.collection.orderBy("createdAt", "desc").limit(1).get();
-            const newestDoc = newestSnap.docs[0];
-            const newestTimestamp = newestDoc?.data()?.createdAt?.toDate?.()?.toISOString() ?? null;
+            if (timestamps.length === 0) {
+                return { totalCount: validDocs.length, oldestTimestamp: null, newestTimestamp: null };
+            }
 
-            return { totalCount, oldestTimestamp, newestTimestamp };
+            return {
+                totalCount: validDocs.length,
+                oldestTimestamp: new Date(Math.min(...timestamps)).toISOString(),
+                newestTimestamp: new Date(Math.max(...timestamps)).toISOString(),
+            };
         });
     }
 

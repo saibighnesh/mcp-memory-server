@@ -1,5 +1,5 @@
 /**
- * Structured logger for the MCP Memory Server.
+ * Structured logger for OmniBrain MCP.
  *
  * All output goes to stderr — MCP reserves stdout for JSON-RPC transport.
  * Set LOG_LEVEL env var to: debug | info | warn | error (default: info).

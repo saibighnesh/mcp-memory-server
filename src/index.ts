@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Firebase Shared Memory MCP Server — entrypoint.
+ * OmniBrain MCP — entrypoint.
  *
  * Loads configuration, initializes the Firestore store,
  * optionally sets up the embedding service for semantic search,

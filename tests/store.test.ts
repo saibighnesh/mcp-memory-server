@@ -164,7 +164,7 @@ describe("FirestoreMemoryStore", () => {
                 updatedAt: createMockTimestamp("2026-01-02T00:00:00Z"),
             });
 
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const memory = await store.getById("id1");
 
@@ -181,8 +181,7 @@ describe("FirestoreMemoryStore", () => {
         });
 
         it("should return null when not found", async () => {
-            const mockDoc = createMockDoc("missing", {}, false);
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([]));
 
             const result = await store.getById("missing");
 
@@ -200,7 +199,7 @@ describe("FirestoreMemoryStore", () => {
                 createdAt: createMockTimestamp("2026-01-01T00:00:00Z"),
                 updatedAt: null,
             });
-            mockCollection.doc.mockReturnValue({ get: jest.fn().mockResolvedValue(mockDoc) });
+            mockCollection.get.mockResolvedValue(createMockSnapshot([mockDoc]));
 
             const result = await store.getById("expired1");
 
@@ -273,7 +272,7 @@ describe("FirestoreMemoryStore", () => {
     // ── searchByTags ───────────────────────────────────────────
 
     describe("searchByTags()", () => {
-        it("should query Firestore with array-contains-any", async () => {
+        it("should filter tags in-memory via cache", async () => {
             const docs = [
                 createMockDoc("1", { fact: "Tagged", tags: ["dev"], pinned: false, relatedTo: [], expiresAt: null, createdAt: null, updatedAt: null }),
             ];
@@ -281,7 +280,6 @@ describe("FirestoreMemoryStore", () => {
 
             const results = await store.searchByTags(["dev", "test"]);
 
-            expect(mockCollection.where).toHaveBeenCalledWith("tags", "array-contains-any", ["dev", "test"]);
             expect(results).toHaveLength(1);
         });
 
@@ -389,8 +387,7 @@ describe("FirestoreMemoryStore", () => {
 
     describe("getStats()", () => {
         it("should return zeros for an empty collection", async () => {
-            const countMock = { data: () => ({ count: 0 }) };
-            mockCollection.get.mockResolvedValueOnce(countMock);
+            mockCollection.get.mockResolvedValue(createMockSnapshot([]));
 
             const stats = await store.getStats();
 
@@ -402,23 +399,14 @@ describe("FirestoreMemoryStore", () => {
         });
 
         it("should return count and boundary timestamps", async () => {
-            const countMock = { data: () => ({ count: 3 }) };
+            const oldestSnap = createMockDoc("oldest", { createdAt: createMockTimestamp("2025-01-01T00:00:00Z") });
+            const newestSnap = createMockDoc("newest", { createdAt: createMockTimestamp("2026-02-23T00:00:00Z") });
 
-            const oldestSnap = createMockSnapshot([
-                createMockDoc("oldest", { createdAt: createMockTimestamp("2025-01-01T00:00:00Z") }),
-            ]);
-            const newestSnap = createMockSnapshot([
-                createMockDoc("newest", { createdAt: createMockTimestamp("2026-02-23T00:00:00Z") }),
-            ]);
-
-            mockCollection.get
-                .mockResolvedValueOnce(countMock)
-                .mockResolvedValueOnce(oldestSnap)
-                .mockResolvedValueOnce(newestSnap);
+            mockCollection.get.mockResolvedValue(createMockSnapshot([oldestSnap, newestSnap]));
 
             const stats = await store.getStats();
 
-            expect(stats.totalCount).toBe(3);
+            expect(stats.totalCount).toBe(2);
             expect(stats.oldestTimestamp).toBe("2025-01-01T00:00:00.000Z");
             expect(stats.newestTimestamp).toBe("2026-02-23T00:00:00.000Z");
         });

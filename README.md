@@ -1,4 +1,4 @@
-# 🧠 MCP Memory Server
+# 🧠 OmniBrain MCP
 
 **Give your AI a brain that never forgets.**
 
@@ -12,7 +12,7 @@ A persistent, cloud-synced memory server for AI assistants using the **Model Con
 
 ```bash
 git clone https://github.com/saibighnesh/mcp-memory-server.git
-cd mcp-memory-server
+cd omnibrain-mcp
 npm install
 npm run setup
 ```
@@ -111,7 +111,7 @@ OPENAI_MODEL=text-embedding-3-large   # Custom model name
 ## 📁 Project Structure
 
 ```
-mcp-memory-server/
+omnibrain-mcp/
 ├── src/
 │   ├── index.ts        # Entry point
 │   ├── config.ts       # CLI args + env vars
@@ -159,10 +159,21 @@ node tests/smoke.mjs  # Smoke test against live Firestore
 | Problem | Solution |
 |---|---|
 | `Missing serviceAccountKey.json` | Download from Firebase Console → Project Settings → Service Accounts |
-| `Missing user authentication` | Add `--user-id=your-name` to the command |
+| `Missing User ID` | Add `--user-id=your-name` to the command |
 | `PERMISSION_DENIED` | Enable Cloud Firestore API in Google Cloud Console |
 | Server disconnected in IDE | Run `npm run build`, restart your IDE |
 | Memories not syncing | Ensure all clients use the **same** `--user-id` |
+
+## 🔍 Competitors & Alternatives (Why OmniBrain?)
+
+The ecosystem for MCP memory servers is growing. **OmniBrain** differentiates itself by focusing on **cross-IDE cloud synchronization** using Firebase Firestore, allowing you to switch between Claude Desktop, Cursor, and CLI without losing context.
+
+If you are looking for other specific approaches to AI memory management, consider these excellent alternatives:
+*   **Official MCP Reference Memory Server:** A standard reference implementation focused on knowledge graph-based persistent memory.
+*   **Redis Agent Memory Server:** A dual-memory system providing working and long-term memory utilizing Redis for semantic search and fast local access.
+*   **meMCP:** Uses TF-IDF-based semantic indexing for fact retrieval and a continuous learning quality scoring system.
+*   **Memory Bank MCP (Cline/Roo Code):** Inspired by Cline, this focuses on localized project workspace remote memory bank management isolated per project.
+*   **doobidoo/mcp-memory-service:** A REST API-focused service optimized for AI agent pipelines like LangGraph, CrewAI, and AutoGen using local embeddings.
 
 ---
 

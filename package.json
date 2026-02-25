@@ -1,11 +1,11 @@
 {
-  "name": "mcp-memory-server",
+  "name": "omnibrain-mcp",
   "version": "2.3.0",
-  "description": "MCP server for shared memory across LLMs, powered by Firebase Firestore",
+  "description": "OmniBrain: MCP server for shared memory across LLMs, powered by Firebase Firestore",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "mcp-memory-server": "./dist/index.js"
+    "omnibrain": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

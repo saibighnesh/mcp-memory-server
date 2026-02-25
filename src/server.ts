@@ -260,7 +260,7 @@ export class MemoryServer {
         this.store = store;
         this.embeddings = embeddings;
         this.server = new Server(
-            { name: "firebase-shared-memory-server", version: SERVER_VERSION },
+            { name: "omnibrain-mcp", version: SERVER_VERSION },
             { capabilities: { tools: {} } }
         );
 
