@@ -51,8 +51,6 @@ export function useMemories() {
 
     useEffect(() => {
         if (!userId) {
-            setMemories([]);
-            setLoading(false);
             return;
         }
 
@@ -76,7 +74,10 @@ export function useMemories() {
         return unsubscribe;
     }, [userId]);
 
-    return { memories, loading };
+    return {
+        memories: userId ? memories : [],
+        loading: userId ? loading : false
+    };
 }
 
 /** Computed stats from the memory list. */
