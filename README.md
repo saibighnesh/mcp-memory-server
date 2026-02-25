@@ -18,9 +18,8 @@ npm run setup
 ```
 
 The interactive setup wizard will guide you through:
-- 👤 Setting up your unique User ID
 - 🔑 Validating your `serviceAccountKey.json`
-- ⚙️ Configuring the Web Dashboard environment variables
+- 👤 Setting up your unique User ID
 - 🏗️ Building the project
 - 📋 Generating **ready-to-paste configs** for your preferred MCP client
 
@@ -90,18 +89,7 @@ OPENAI_MODEL=text-embedding-3-large   # Custom model name
 
 ---
 
-## 📊 Web Dashboard
 
-| Page | Features |
-|---|---|
-| 📊 Dashboard | Stats, timeline, tag cloud, activity feed |
-| 🧠 Memory Explorer | Search, filter, inline edit, pin/delete |
-| 🔗 Knowledge Graph | Interactive D3.js force-directed visualization |
-| 📤 Import/Export | Download memories as JSON |
-| 🔍 Semantic Search | AI search with relevance scoring |
-| ⚙️ Settings | Server info, connection guide |
-
----
 
 ## ✨ Key Features
 
@@ -132,7 +120,6 @@ mcp-memory-server/
 │   ├── embeddings.ts   # Gemini AI embeddings
 │   ├── logger.ts       # Structured logger
 │   └── types.ts        # TypeScript interfaces
-├── dashboard/          # Next.js web dashboard (6 pages)
 ├── tests/
 │   ├── store.test.ts   # 19 unit tests
 │   └── smoke.mjs       # Live Firestore smoke test

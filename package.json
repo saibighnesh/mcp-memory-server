@@ -11,9 +11,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "setup": "node setup.mjs",
-    "postinstall": "npm install --prefix dashboard",
-    "deploy-dashboard": "npm run build --prefix dashboard && firebase deploy --only hosting"
+    "setup": "node setup.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.42.0",
