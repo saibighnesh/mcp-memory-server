@@ -78,8 +78,7 @@ async function main() {
     console.log(`\n${DIM}Or do it manually:${RESET}`);
     console.log(`${DIM}- Go to https://console.firebase.google.com/${RESET}`);
     console.log(`${DIM}- Add a project -> Build -> Firestore Database -> Create database (Test Mode)${RESET}`);
-    console.log(`${DIM}- Build -> Authentication -> Get Started -> Enable Google Sign-In${RESET}`);
-
+    
     await prompt("Press Enter when you have a Firebase project ready.");
 
     // Step 2: Service Account Key (Backend)
