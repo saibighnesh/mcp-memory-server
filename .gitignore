@@ -3,3 +3,7 @@ dist/
 .env
 serviceAccountKey.json
 firebase-debug.log
+*.log
+*.txt
+coverage/
+.DS_Store

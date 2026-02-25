@@ -77,7 +77,7 @@ export default function SettingsPage() {
       "command": "node",
       "args": [
         "C:/absolute/path/to/mcp-memory-server/dist/index.js",
-        "--user-id=YOUR_USERNAME"
+        "--user-id=[user-id]"
       ]
     }
   }
@@ -85,7 +85,7 @@ export default function SettingsPage() {
 
     const cursorConfig = `Type: command
 Name: firebase-shared-memory
-Command: node C:/absolute/path/to/mcp-memory-server/dist/index.js --user-id=YOUR_USERNAME`;
+Command: node C:/absolute/path/to/mcp-memory-server/dist/index.js --user-id=[user-id]`;
 
     return (
         <>
@@ -151,7 +151,7 @@ Command: node C:/absolute/path/to/mcp-memory-server/dist/index.js --user-id=YOUR
                             Connection Guide (LLM Clients)
                         </h2>
                         <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                            Connect your AI assistant to this memory server. Replace <code className="text-[var(--color-primary)]">YOUR_USERNAME</code> with your unique ID, and update the file path to point to your <code className="text-white">dist/index.js</code> file.
+                            Connect your AI assistant to this memory server. Replace <code className="text-[var(--color-primary)]">[user-id]</code> with your unique ID, and update the file path to point to your <code className="text-white">dist/index.js</code> file.
                         </p>
 
                         <CopyBlock title="Claude Desktop / Windsurf / Gemini CLI config.json" code={claudeConfig} />
