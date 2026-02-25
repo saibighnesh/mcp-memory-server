@@ -72,12 +72,15 @@ async function main() {
     // Step 1: Firebase Project Setup
     console.log(`\n${BOLD}${CYAN}Step 1: Create a Free Database${RESET}`);
     console.log(`We use Google Firebase to securely store your memories for free.`);
-    console.log(`1. Go to ${CYAN}https://console.firebase.google.com/${RESET}`);
-    console.log(`2. Click ${BOLD}"Add project"${RESET} and give it a name.`);
-    console.log(`3. Once created, click ${BOLD}"Firestore Database"${RESET} on the left and click ${BOLD}"Create database"${RESET}. Start in Test Mode for now.`);
-    console.log(`4. Click ${BOLD}"Authentication"${RESET} on the left, click ${BOLD}"Get Started"${RESET}, choose ${BOLD}"Google"${RESET}, and enable it.`);
+    console.log(`The fastest way is using the CLI. Run these two commands in a new terminal:`);
+    console.log(`  1. ${BOLD}npx firebase login${RESET}`);
+    console.log(`  2. ${BOLD}npx firebase init${RESET} (Select Firestore, create a new project, use default rules)`);
+    console.log(`\n${DIM}Or do it manually:${RESET}`);
+    console.log(`${DIM}- Go to https://console.firebase.google.com/${RESET}`);
+    console.log(`${DIM}- Add a project -> Build -> Firestore Database -> Create database (Test Mode)${RESET}`);
+    console.log(`${DIM}- Build -> Authentication -> Get Started -> Enable Google Sign-In${RESET}`);
 
-    await prompt("Press Enter when you have finished these steps.");
+    await prompt("Press Enter when you have a Firebase project ready.");
 
     // Step 2: Service Account Key (Backend)
     console.log(`\n${BOLD}${CYAN}Step 2: Get Your Secret Backend Key${RESET}`);
@@ -104,18 +107,19 @@ async function main() {
 
     // Step 3: Web Dashboard Config (Frontend)
     console.log(`\n${BOLD}${CYAN}Step 3: Connect the Web Dashboard${RESET}`);
-    console.log(`We need to connect your visual dashboard to the database.`);
-    console.log(`1. In the Firebase Console, go back to ${BOLD}Project settings${RESET} -> ${BOLD}General${RESET}.`);
-    console.log(`2. Scroll down to ${BOLD}"Your apps"${RESET} and click the ${BOLD}</>${RESET} (Web) button.`);
-    console.log(`3. Register the app with any name.`);
-    console.log(`4. It will show you a block of code with a ${BOLD}firebaseConfig${RESET} object.`);
+    console.log(`Attempting to automatically extract your Firebase Web Configuration...`);
 
-    const configBlock = await promptMultiline("Copy that ENTIRE firebaseConfig { ... } block and paste it below:");
+    let configExtracted = false;
+    try {
+        const { execSync } = await import("child_process");
+        // We use --json to parse it safely
+        console.log(`  ${DIM}Running: npx firebase-tools apps:sdkconfig WEB${RESET}`);
+        const sdkOutput = execSync('npx firebase-tools apps:sdkconfig WEB', { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'ignore'] });
 
-    if (configBlock) {
-        // Regex to extract the values from the pasted text
+        // The output usually contains the JSON block inside it. Let's try to regex out the firebaseConfig object
+        // Extracting keys safely
         const extract = (key) => {
-            const match = configBlock.match(new RegExp(`${key}\\s*:\\s*['"\`](.*?)['"\`]`));
+            const match = sdkOutput.match(new RegExp(`"${key}"\\s*:\\s*"([^"]+)"`));
             return match ? match[1] : '';
         };
 
@@ -135,12 +139,51 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${messagingSenderId}
 NEXT_PUBLIC_FIREBASE_APP_ID=${appId}
 `;
             writeFileSync("dashboard/.env.local", envLocalContent);
-            console.log(`  ${CHECK} Success! Your dashboard/.env.local file has been created automatically.\n`);
-        } else {
-            console.log(`  ${CROSS} Hmm, I couldn't find the config values in what you pasted. You may need to create dashboard/.env.local manually.\n`);
+            console.log(`  ${CHECK} Success! Found config for project '${projectId}' and automatically created dashboard/.env.local.\n`);
+            configExtracted = true;
         }
-    } else {
-        console.log(`  ${DIM}Skipped dashboard configuration.${RESET}\n`);
+    } catch (e) {
+        // Fallback to manual mode if Firebase CLI fails or user isn't logged in
+        console.log(`  ${YELLOW}Automatic extraction failed (make sure you are logged in via 'npx firebase login').${RESET}`);
+    }
+
+    if (!configExtracted) {
+        console.log(`\n${DIM}Falling back to manual setup...${RESET}`);
+        console.log(`1. In the Firebase Console, go back to ${BOLD}Project settings${RESET} -> ${BOLD}General${RESET}.`);
+        console.log(`2. Scroll down to ${BOLD}"Your apps"${RESET} and click the ${BOLD}</>${RESET} (Web) button to register an app.`);
+        console.log(`3. It will show you a block of code with a ${BOLD}firebaseConfig${RESET} object.`);
+
+        const configBlock = await promptMultiline("Copy that ENTIRE firebaseConfig { ... } block and paste it below:");
+
+        if (configBlock) {
+            const extract = (key) => {
+                const match = configBlock.match(new RegExp(`${key}\\s*:\\s*['"\`](.*?)['"\`]`));
+                return match ? match[1] : '';
+            };
+
+            const apiKey = extract('apiKey');
+            const authDomain = extract('authDomain');
+            const projectId = extract('projectId');
+            const storageBucket = extract('storageBucket');
+            const messagingSenderId = extract('messagingSenderId');
+            const appId = extract('appId');
+
+            if (apiKey && projectId) {
+                const envLocalContent = `NEXT_PUBLIC_FIREBASE_API_KEY=${apiKey}
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${authDomain}
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=${projectId}
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${storageBucket}
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${messagingSenderId}
+NEXT_PUBLIC_FIREBASE_APP_ID=${appId}
+`;
+                writeFileSync("dashboard/.env.local", envLocalContent);
+                console.log(`  ${CHECK} Success! Your dashboard/.env.local file has been created manually.\n`);
+            } else {
+                console.log(`  ${CROSS} Hmm, I couldn't find the config values in what you pasted. You may need to create dashboard/.env.local manually.\n`);
+            }
+        } else {
+            console.log(`  ${DIM}Skipped dashboard configuration.${RESET}\n`);
+        }
     }
 
 

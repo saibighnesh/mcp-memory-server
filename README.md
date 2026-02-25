@@ -24,113 +24,17 @@ The interactive setup wizard will guide you through:
 - 🏗️ Building the project
 - 📋 Generating **ready-to-paste configs** for your preferred MCP client
 
----
+## 💻 Supported Clients
+The setup wizard automatically generates the exact configuration you need for:
+- Claude Desktop
+- Cursor IDE
+- Windsurf / Codeium
+- VS Code (via the Roo Code / Cline extension)
+- Claude Code CLI
 
-## 🔌 Connect Your Client (Pick One)
-
-> Replace `YOUR_PATH` with the absolute path to this folder, and `YOUR_NAME` with your username.
-
-### Claude Code
-```bash
-claude mcp add memory -- node YOUR_PATH/dist/index.js --user-id=YOUR_NAME
-```
-That's it. Done. ✅
+Just follow the prompt at the end of `npm run setup`!
 
 ---
-
-### Claude Desktop
-File: `%APPDATA%\Claude\claude_desktop_config.json` (Win) · `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac)
-
-```json
-{
-  "mcpServers": {
-    "memory": {
-      "command": "node",
-      "args": ["YOUR_PATH/dist/index.js", "--user-id=YOUR_NAME"]
-    }
-  }
-}
-```
-
----
-
-### Cursor IDE
-**Settings → Features → MCP → + Add new MCP server**
-
-| Field | Value |
-|---|---|
-| Type | `command` |
-| Name | `memory` |
-| Command | `node YOUR_PATH/dist/index.js --user-id=YOUR_NAME` |
-
----
-
-### Windsurf / Codeium
-File: `~/.codeium/windsurf/mcp_config.json`
-
-```json
-{
-  "mcpServers": {
-    "memory": {
-      "command": "node",
-      "args": ["YOUR_PATH/dist/index.js", "--user-id=YOUR_NAME"]
-    }
-  }
-}
-```
-
----
-
-### VS Code (GitHub Copilot)
-File: `.vscode/mcp.json` in your project
-
-```json
-{
-  "mcp": {
-    "servers": {
-      "memory": {
-        "command": "node",
-        "args": ["YOUR_PATH/dist/index.js", "--user-id=YOUR_NAME"]
-      }
-    }
-  }
-}
-```
-
----
-
-### Gemini CLI
-File: `~/.gemini/settings.json`
-
-```json
-{
-  "mcpServers": {
-    "memory": {
-      "command": "node",
-      "args": ["YOUR_PATH/dist/index.js", "--user-id=YOUR_NAME"]
-    }
-  }
-}
-```
-
----
-
-### Any MCP Client (Generic)
-The server uses **stdio transport**:
-```bash
-node YOUR_PATH/dist/index.js --user-id=YOUR_NAME
-```
-
----
-
-## 🗝️ Firebase Setup (First Time Only)
-
-1. Go to [console.firebase.google.com](https://console.firebase.google.com/) → **Create a project**
-2. Enable **Build → Firestore Database** → Create in **production mode**
-3. **Project Settings** (⚙️) → **Service Accounts** → **Generate new private key**
-4. Save the file as **`serviceAccountKey.json`** in the project root
-
-> ⚠️ This file is gitignored. Never commit it.
 
 ### Optional: Semantic Search
 Add **any one** API key to enable AI-powered similarity search:
