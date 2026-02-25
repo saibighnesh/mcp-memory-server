@@ -51,7 +51,7 @@ export default function SettingsPage() {
             icon: Database,
             items: [
                 { label: "Provider", value: "Cloud Firestore" },
-                { label: "Project", value: "mcp-memory-srv-prust" },
+                { label: "Project", value: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "Connected" },
                 { label: "Total Memories", value: String(stats.total) },
                 { label: "Pinned", value: String(stats.pinned) },
                 { label: "Unique Tags", value: String(Object.keys(stats.tags).length) },
