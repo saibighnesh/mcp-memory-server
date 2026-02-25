@@ -148,6 +148,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=${appId}
     console.log(`\n${BOLD}${CYAN}Step 4: Connect Your AI Identity${RESET}`);
     console.log(`Your server needs to know *who* you are, so your AI only saves memories to your private account.`);
     console.log(`1. Open a new terminal window in this folder and run: ${BOLD}cd dashboard && npm run dev${RESET}`);
+    console.log(`   ${DIM}(If you get a 'next: command not found' error, run 'npm install' inside the dashboard folder first)${RESET}`);
     console.log(`2. Open ${CYAN}http://localhost:3000${RESET} in your browser and log in with Google.`);
     console.log(`3. In the Firebase Console, go to ${BOLD}Authentication${RESET} -> ${BOLD}Users${RESET}.`);
     console.log(`4. Find your email and copy the ${BOLD}User UID${RESET} (it looks like a long random string of letters/numbers).`);
