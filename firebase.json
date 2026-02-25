@@ -7,6 +7,9 @@
   },
   "hosting": {
     "public": "dashboard/out",
+    "predeploy": [
+      "npm run build --prefix dashboard"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
