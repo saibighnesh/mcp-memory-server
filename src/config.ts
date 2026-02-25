@@ -12,7 +12,7 @@ import dotenv from "dotenv";
 import { logger } from "./logger.js";
 import type { ServerConfig } from "./types.js";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

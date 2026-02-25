@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "mcp-memory-srv-prust"
+    "default": "your-firebase-project-id"
   },
   "targets": {},
   "etags": {}
